@@ -1,15 +1,6 @@
 // menuData.js
 export const categories = [
   {
-    name: "All Categories",
-    foods: [
-      { id: 1, name: "Food1", price: 10.99 },
-      { id: 2, name: "Food2", price: 12.99 },
-      // Add more food items as needed
-    ],
-  },
-
-  {
     name: "Starters",
     foods: [
       // Add starter items
@@ -36,7 +27,13 @@ export const categories = [
   {
     name: "Burgers",
     foods: [
-      // Add burger items
+      { id: 0, name: "Ole Mex Burger", price: 14.95 },
+      { id: 1, name: "841 Mac Attack", price: 14.25 },
+      { id: 2, name: "Pub", price: 12.95 },
+      { id: 3, name: "Black and Tan", price: 13.95 },
+      { id: 4, name: "The Cado", price: 14.95 },
+      { id: 5, name: "Brew House Beef Brisket Burger", price: 14.5 },
+      // Add more burger items as needed
     ],
   },
   {
