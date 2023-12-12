@@ -2,7 +2,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const CheckoutPage = ({ selectedOrders, totalPrice, onCheckoutClose }) => {
+const CheckoutPage = ({
+  selectedOrders,
+  totalPrice,
+  onCheckoutClose,
+  onRemoveItem,
+  onUpdateQuantity,
+}) => {
   const handleCheckout = () => {
     alert(`Checkout successful!\nTotal Price: $${totalPrice.toFixed(2)}`);
     onCheckoutClose();
@@ -13,10 +19,33 @@ const CheckoutPage = ({ selectedOrders, totalPrice, onCheckoutClose }) => {
       <h2 className="text-xl font-bold mb-4">Checkout</h2>
       <ul>
         {selectedOrders.map((order) => (
-          <li key={order.id} className="mb-2 flex justify-between">
-            <span>
-              {order.name} - ${order.price}
-            </span>
+          <li key={order.id} className="mb-2 flex justify-between items-center">
+            <div>
+              <span>
+                {order.name} - ${order.price}
+              </span>
+              <div className="flex items-center mt-2">
+                <button
+                  onClick={() => onUpdateQuantity(order.id, order.quantity - 1)}
+                  className="bg-blue-500 text-white px-2 py-1 rounded mr-2 hover:bg-blue-700"
+                >
+                  -
+                </button>
+                <span>{order.quantity}</span>
+                <button
+                  onClick={() => onUpdateQuantity(order.id, order.quantity + 1)}
+                  className="bg-green-500 text-white px-2 py-1 rounded ml-2 hover:bg-green-700"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+            <button
+              onClick={() => onRemoveItem(order.id)}
+              className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700"
+            >
+              Remove
+            </button>
           </li>
         ))}
       </ul>
@@ -37,6 +66,8 @@ CheckoutPage.propTypes = {
   selectedOrders: PropTypes.array.isRequired,
   totalPrice: PropTypes.number.isRequired,
   onCheckoutClose: PropTypes.func.isRequired,
+  onRemoveItem: PropTypes.func.isRequired,
+  onUpdateQuantity: PropTypes.func.isRequired,
 };
 
 export default CheckoutPage;
