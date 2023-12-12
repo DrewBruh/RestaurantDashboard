@@ -1,9 +1,9 @@
-// FoodCategory.js
+// FoodCategory.jsx
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { categories as menuCategories } from "../menuData"; // Update the import path based on your project structure
-import CheckoutPage from "./checkoutPage";
-import Header from "./header";
+import CheckoutPage from "./CheckoutPage";
+import Header from "./Header";
 
 const FoodCategory = () => {
   const [visibleCategory, setVisibleCategory] = useState(null);
@@ -83,7 +83,8 @@ const FoodCategory = () => {
               className="border rounded-md overflow-hidden shadow-md mb-4"
             >
               <div
-                className="flex items-center bg-red-700 text-yellow-300 py-1 px-4 cursor-pointer font-bold"
+                className="flex items-center justify-center bg-red-700 text-yellow-300 py-4 px-4 cursor-pointer font-bold text-center"
+                style={{ fontSize: "20px" }}
                 onClick={() => handleCategoryClick(category.name)}
               >
                 {category.name}
@@ -117,19 +118,17 @@ const FoodCategory = () => {
             </div>
           ))}
         </div>
-
-        {selectedOrders.length > 0 && (
-          <div className="ml-4">
-            <CheckoutPage
-              selectedOrders={selectedOrders}
-              totalPrice={totalPrice}
-              onCheckoutClose={handleCheckoutClose}
-              onRemoveItem={handleRemove}
-              onUpdateQuantity={handleUpdateQuantity}
-            />
-          </div>
-        )}
       </div>
+
+      {selectedOrders.length > 0 && (
+        <CheckoutPage
+          selectedOrders={selectedOrders}
+          totalPrice={totalPrice}
+          onCheckoutClose={handleCheckoutClose}
+          onRemoveItem={handleRemove}
+          onUpdateQuantity={handleUpdateQuantity}
+        />
+      )}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-// CheckoutPage.js
+// CheckoutPage.jsx
 import React from "react";
 import PropTypes from "prop-types";
 
@@ -15,11 +15,7 @@ const CheckoutPage = ({
   };
 
   return (
-    <div
-      className="fixed bottom-0 left-0 right-0 bg-gray-800 text-white p-4"
-      style={{ maxHeight: "25vh", overflowY: "auto" }}
-    >
-      {/* Set the desired max-height and overflow-y styles */}
+    <div className="fixed bottom-0 left-0 right-0 bg-gray-800 text-white p-4">
       <h2 className="text-xl font-bold mb-4">Checkout</h2>
       <ul>
         {selectedOrders.map((order) => (
@@ -58,7 +54,7 @@ const CheckoutPage = ({
       </div>
       <button
         onClick={handleCheckout}
-        className="bg-green-500 text-white px-4 py-2 rounded mt-4 block mx-auto hover:bg-green-700"
+        className="bg-green-500 text-white w-full py-4 rounded mt-4 block mx-auto hover:bg-green-700"
       >
         Checkout
       </button>
