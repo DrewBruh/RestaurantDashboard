@@ -1,17 +1,21 @@
 import { useState } from "react";
-import FoodContainer from "./foodCategory";
-
-import Header from "./header";
+import FoodContainer from "./Pages/foodCategory";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from "./Pages/header";
+import CheckoutPage from "./Pages/checkoutPage";
 import "./App.css";
 import "./index.css";
+import FoodCategory from "./Pages/foodCategory";
 function App() {
   return (
     <>
-      <Header />
-
       <div>
-        {" "}
-        <FoodContainer />
+        <BrowserRouter>
+          <Routes>
+            <Route index element={<FoodCategory />} />
+            <Route path="/checkout" element={<CheckoutPage />}></Route>
+          </Routes>
+        </BrowserRouter>
       </div>
     </>
   );

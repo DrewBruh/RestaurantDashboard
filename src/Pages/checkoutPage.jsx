@@ -15,7 +15,11 @@ const CheckoutPage = ({
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-gray-800 text-white p-4">
+    <div
+      className="fixed bottom-0 left-0 right-0 bg-gray-800 text-white p-4"
+      style={{ maxHeight: "25vh", overflowY: "auto" }}
+    >
+      {/* Set the desired max-height and overflow-y styles */}
       <h2 className="text-xl font-bold mb-4">Checkout</h2>
       <ul>
         {selectedOrders.map((order) => (

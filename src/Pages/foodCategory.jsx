@@ -1,8 +1,9 @@
 // FoodCategory.js
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { categories as menuCategories } from "./menuData"; // Update the import path based on your project structure
+import { categories as menuCategories } from "../menuData"; // Update the import path based on your project structure
 import CheckoutPage from "./checkoutPage";
+import Header from "./header";
 
 const FoodCategory = () => {
   const [visibleCategory, setVisibleCategory] = useState(null);
@@ -72,57 +73,63 @@ const FoodCategory = () => {
   );
 
   return (
-    <div className="flex flex-grow">
-      <div>
-        {menuCategories.map((category) => (
-          <div
-            key={category.name}
-            className="border rounded-md overflow-hidden shadow-md mb-4"
-          >
+    <div className="flex flex-col h-screen overflow-hidden">
+      <Header />
+      <div className="flex flex-grow overflow-hidden">
+        <div className="overflow-y-auto flex-grow">
+          {menuCategories.map((category) => (
             <div
-              className="flex items-center bg-red-700 text-yellow-300 py-1 px-4 cursor-pointer font-bold"
-              onClick={() => handleCategoryClick(category.name)}
+              key={category.name}
+              className="border rounded-md overflow-hidden shadow-md mb-4"
             >
-              {category.name}
-            </div>
-
-            {category.name === visibleCategory && (
-              <div className="p-4">
-                {category.foods.map((food) => (
-                  <div
-                    key={food.id}
-                    className="flex items-center justify-between mb-2"
-                  >
-                    <div>
-                      <span className="font-bold">{food.name}</span>
-                      <span className="text-gray-600 ml-2">${food.price}</span>
-                    </div>
-                    <div className="flex items-center">
-                      <button
-                        onClick={() => handleAddClick(food)}
-                        className="bg-green-500 text-white px-2 py-1 rounded hover-blue:bg-blue-700"
-                      >
-                        Add
-                      </button>
-                    </div>
-                  </div>
-                ))}
+              <div
+                className="flex items-center bg-red-700 text-yellow-300 py-1 px-4 cursor-pointer font-bold"
+                onClick={() => handleCategoryClick(category.name)}
+              >
+                {category.name}
               </div>
-            )}
-          </div>
-        ))}
-      </div>
-      {selectedOrders.length > 0 && (
-        <div className="ml-4">
-          <CheckoutPage
-            selectedOrders={selectedOrders}
-            totalPrice={totalPrice}
-            onCheckoutClose={handleCheckoutClose}
-            onRemoveItem={handleRemove}
-            onUpdateQuantity={handleUpdateQuantity}
-          />
+
+              {category.name === visibleCategory && (
+                <div className="p-4">
+                  {category.foods.map((food) => (
+                    <div
+                      key={food.id}
+                      className="flex items-center justify-between mb-2"
+                    >
+                      <div>
+                        <span className="font-bold">{food.name}</span>
+                        <span className="text-gray-600 ml-2">
+                          ${food.price}
+                        </span>
+                      </div>
+                      <div className="flex items-center">
+                        <button
+                          onClick={() => handleAddClick(food)}
+                          className="bg-green-500 text-white px-2 py-1 rounded hover-blue:bg-blue-700"
+                        >
+                          Add
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))}
         </div>
-      )}
+
+        {selectedOrders.length > 0 && (
+          <div className="ml-4">
+            <CheckoutPage
+              selectedOrders={selectedOrders}
+              totalPrice={totalPrice}
+              onCheckoutClose={handleCheckoutClose}
+              onRemoveItem={handleRemove}
+              onUpdateQuantity={handleUpdateQuantity}
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 };
